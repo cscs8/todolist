@@ -13,6 +13,7 @@ repositories {
 dependencies {
     "implementation"(kotlin("stdlib-jdk8"))
     "implementation"("com.sparkjava:spark-core:2.9.1")
+    "implementation"("org.slf4j:slf4j-simple:1.7.30")
 }
 
 tasks {

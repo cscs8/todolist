@@ -1,8 +1,6 @@
-//import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
     kotlin("jvm") version ("1.3.70")
-//    id("org.jetbrains.kotlin.jvm") version ("1.3.70")
+    id("org.jlleitschuh.gradle.ktlint") version ("9.2.1")
 }
 
 group = "org.example"
@@ -14,6 +12,7 @@ repositories {
 
 dependencies {
     "implementation"(kotlin("stdlib-jdk8"))
+    "implementation"("com.sparkjava:spark-core:2.9.1")
 }
 
 tasks {

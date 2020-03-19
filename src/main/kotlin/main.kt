@@ -6,15 +6,16 @@ import todolist.Task
 fun main(args: Array<String>) {
     val objectMapper = ObjectMapper().registerKotlinModule()
 
-    get("/tasks") { req, res ->
-        val tasks = listOf(
+    get("/tasks", { req, res ->
+        listOf(
             Task(1, "クリーニングに出す", false),
             Task(2, "住民票を取得する", true)
         )
-        objectMapper.writeValueAsString(tasks)
-    }
-    get("/hello") { request, response ->
-        val name: String? = request.queryParams("name")
-        "Hello, ${name ?: "world!"}"
-    }
+    }, { model ->
+        objectMapper.writeValueAsString(model)
+    })
+//    get("/hello") { request, response ->
+//        val name: String? = request.queryParams("name")
+//        "Hello, ${name ?: "world!"}"
+//    }
 }

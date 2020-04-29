@@ -28,6 +28,6 @@ tasks {
 ////        }
 //    }
     withType<Wrapper> {
-        gradleVersion = "6.2.2"
+        gradleVersion = "6.4-rc-3"
     }
 }

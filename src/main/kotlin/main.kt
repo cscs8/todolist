@@ -1,19 +1,17 @@
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import spark.Spark.get
-import todolist.Task
+import todolist.JsonTransformer
+import todolist.TaskController
 
 fun main(args: Array<String>) {
     val objectMapper = ObjectMapper().registerKotlinModule()
+    val taskController = TaskController()
+    val jsonTransformer = JsonTransformer(objectMapper)
 
     get(
-        "/tasks", { req, res ->
-            listOf(
-                Task(1, "クリーニングに出す", false),
-                Task(2, "住民票を取得する", true)
-            )
-        },
-        objectMapper::writeValueAsString
+        "/tasks", taskController.index(),
+        jsonTransformer
     )
 //    get("/hello") { request, response ->
 //        val name: String? = request.queryParams("name")

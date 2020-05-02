@@ -4,12 +4,8 @@ import spark.Request
 import spark.Response
 import spark.Route
 
-class TaskController {
+class TaskController(private val taskRepository: TaskRepository) {
     fun index(): Route = Route { req, res ->
-        // ダミーデータを返す
-        listOf(
-            Task(1, "クリーニングに出す", false),
-            Task(2, "住民票を取得する", true)
-        )
+        taskRepository.findAll()
     }
 }

@@ -14,8 +14,10 @@ fun main() {
     path("/tasks") {
         get("", taskController.index(), jsonTransformer)
 
+        post("", taskController.create(), jsonTransformer)
+
         get("/:id", taskController.show(), jsonTransformer)
 
-        post("", taskController.create(), jsonTransformer)
+        delete("/:id", taskController.destroy(), jsonTransformer)
     }
 }

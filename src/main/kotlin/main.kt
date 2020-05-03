@@ -1,7 +1,6 @@
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
-import spark.Spark.get
-import spark.Spark.post
+import spark.Spark.*
 import todolist.JsonTransformer
 import todolist.TaskController
 import todolist.TaskRepository
@@ -12,9 +11,11 @@ fun main() {
     val taskRepository = TaskRepository()
     val taskController = TaskController(objectMapper, taskRepository)
 
-    get("/tasks", taskController.index(), jsonTransformer)
+    path("/tasks") {
+        get("", taskController.index(), jsonTransformer)
 
-    get("/tasks/:id", taskController.show(), jsonTransformer)
+        get("/:id", taskController.show(), jsonTransformer)
 
-    post("/tasks", taskController.create(), jsonTransformer)
+        post("", taskController.create(), jsonTransformer)
+    }
 }

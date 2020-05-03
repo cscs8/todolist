@@ -6,6 +6,8 @@ class TaskRepository {
     private val maxId: Long
         get() = tasks.map(Task::id).max() ?: 0
 
+    fun findById(id: Long): Task? = tasks.find { it.id == id }
+
     fun findAll(): List<Task> = tasks.toList()
 
     fun create(content: String): Task {
@@ -13,5 +15,9 @@ class TaskRepository {
         val task = Task(id, content, false)
         tasks += task
         return task
+    }
+
+    fun delete(task: Task) {
+        tasks.removeIf { (id) -> id == task.id }
     }
 }
